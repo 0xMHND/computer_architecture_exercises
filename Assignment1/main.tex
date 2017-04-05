@@ -1,0 +1,31 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\title{ECE472-Assignment 1}
+
+\author{Mohannad Al Arifi}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Describe the difference between architecture and organization.}
+Organization is all about hardware like how the circuits are designed, memory hierarchy layout, RAM and I/O buses.\newline Architecture deals with concepts and applications of the hardware like parallelism in programming, instruction set, optimizing the cache hits and Endianness. 
+\section{Describe the concept of endianness. What common platforms use what endianness?}
+It refers to the storing order a word's bytes follow. Big-endian is where the most significant byte of a word is stored in an address and the next higher address is where the next byte is stored until the least significant byte which will have the highest address. Little-endian is the opposite. Big-endian is used commonly in network's data transfer such as Internet protocols and IPs. little-endian is commonly used in microprocessor's data storing. 
+\section{Give the IEEE 754 floating point format for both single and double precision.}
+single : 8 bits or 23 bits\newline double : 11 bits or 52 bits
+\newline s: sign bit (0:non-negative, 1:negative)\newline\(x =  (-1)^s * (1+Fraction) * 2^{Exponent - Bis}\)
+\section{Describe the concept of the memory hierarchy. What levels of the hierarchy are present on flip.engr.oregonstate.edu?}
+It is a concept that describes the layout of cache in the cpu. The fastest accessible memory is in level 1 cache and the next is level 2 cache which is bigger but slower and then level 3 and so forth. Sometimes the RAM and Hard disk are considered in this hierarchy and then we don't talk about what is on chip only. Usually this hierarchy is visualized as a triangle where closer to the top is the smallier but faster L1 cache but. As we go down to the base we have larger and slower levels until we hit the bottom where the hard disk resides.  \newline\newline
+flip has L1 data cache, L1 Instruction cache, L2 Unified cache. 
+
+\section{What streaming SIMD instruction levels are present on flip.engr.oregonstate.edu?}
+SSE3, SSSE3, SSSE4.1
+\newline when I run the program on my machine I get SSE and SSE2 too. I wonder why I can't find them on flip.
+\end{document}

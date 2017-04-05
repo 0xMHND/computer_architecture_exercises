@@ -1,0 +1,120 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\title{ECE472-Assignment 3}
+
+\author{Mohannad Al Arifi}
+
+\date{\today}
+
+\linespread{1.3} % 1.5 spacing
+\renewcommand{\baselinestretch}{1}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+   \item Introduction
+   \item Commodity Hardware Today
+   \item CPU Cache
+   \item Virtual Memory
+   \item NUMA Support
+   \item What Programmers Can Do
+   \item Memory Performance Tools
+   \item Upcoming Technology
+\end{itemize}
+
+%*************************
+
+\subsection{CPU Cache}
+\begin{itemize}
+   \item CPU Cache in the Big Picture
+   \item Cache Operation at High Level
+   \item CPU Cache Implementation
+      \begin{enumerate}
+	 \item Associativity 
+	 \item Measurements of Cache Effects 
+	    \begin{enumerate}
+	       \item Single Threaded Sequential Access 
+	       \item Single Threaded Random Access
+	    \end{enumerate}
+	 \item Multi-Processor Support
+	    \begin{enumerate}
+	       \item Multi Threaded Access
+	       \item Special Case: Hyper-Threads
+	    \end{enumerate}
+	 \item Other Details
+      \end{enumerate}
+   \item Instruction Cache 
+      \begin{enumerate}
+	 \item Self Modifying Code 
+      \end{enumerate}
+   \item Cache Misses Factors
+      \begin{enumerate}
+	 \item Cache and Memory Bandwidth
+	 \item Critical Word Load
+	 \item Cache Placement
+	 \item FSB Influence
+      \end{enumerate}
+\end{itemize}
+
+%*************************
+
+\subsection{What Programmers Can Do}
+\begin{itemize}
+   \item Bypassing the Cache
+   \item Cache Access
+      \begin{enumerate}
+	 \item Optimizing Level 1 Stat Cache Access 
+	 \item Optimizing Level 1 Instruction Cache Access
+      \end{enumerate}
+   \item Prefetching
+      \begin{enumerate}
+	 \item Hardware Prefetching
+	 \item Software Prefetching
+	 \item Special Kind of Prefetch: Speculation
+	 \item Helper Threads
+	 \item Direct Cache Access
+      \end{enumerate}
+   \item Multi-Thread Optimizations
+      \begin{enumerate}
+	 \item Concurrency Optimizations
+	 \item Atomicity Optimizations
+	 \item Bandwidth Considerations
+      \end{enumerate}
+   \item NUMA Programming
+      \begin{enumerate}
+	 \item Memory Policy
+	 \item Specifying Policies
+	 \item Swapping and Policies
+	 \item VMA Policy
+	 \item Querying Node Information
+	 \item CPU and Node Sets
+	 \item Explicit NUMA Optimizations
+	 \item Utilizing All Bandwidth
+      \end{enumerate}
+\end{itemize}
+
+\end{document}
+
+
+
+\begin{itemize}
+   \item 
+   \item 
+\end{itemize}
+   \begin{enumerate}
+      \item 
+      \item
+   \end{enumerate}

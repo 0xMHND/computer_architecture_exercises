@@ -1,0 +1,55 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+%modify section and subsection numbering
+\makeatletter
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{ECE472-Assignment 4}
+
+\author{Mohannad Al Arifi}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Part 1}
+\subsection{Memory Optimization}
+These slides presented a brief architecture overview, general code optimization for data cache suggestions, data structures and aliasing. The cache consists of 32/64 bytes Lines grouped in sets which helps in minimizing the cache line thrashing (N-way set-associative). When ever data is accessed from memory, a whole line is returned. There is typically two to three levels of cache, level 1 is divided into data cache and instructions cache. L1 cache takes about 1-5 cycles and L2 about 5-20 cycles.
+\newline 
+Cache misses are when the data is not found in cache. The slides divides them into three types: Compulsory misses, capacity misses and conflict misses(thrashing). There is also three counter advices: Rearrange code and data to increase spatial locality, Reduce the size and number of read cache lines to be more smarter smaller formats, and reuse the cache lines to increase the temporal and spatial locality. It is also very useful to pay very close attention to Profiling(measuring the cache utilization), and to studying and getting familiar with the generated code, Locality, and size.
+\newline  
+Third part talked about data cache optimization. There are two prefetching/preloading methods: Software prefetching and Hardware prefetching. Software prefetching has to not be too early nor too late, but it can be greedy. Hardware uses Hit-under-miss processing. Cache-concious structure layout can be implemented by noticing:
+   \begin{enumerate}
+      \item Field reordering: store them together if likely accessed together.
+      \item Hot/cold splitting: Allocate structures from a memory pool to increase coherence and array-style allocation is preferred. 
+      \item Compiler padding: declare variable in decreasing order.  
+   \end{enumerate}
+For Cache performance analysis thee suggest using logging tool and looking for usage patterns;
+ Activity indicates hot or cold field,
+ and the correlation is the basis for field reordering.
+Tree data structure is optimized by rearranging nodes to increase spatial locality and by pointer elimination and compression to reducing size. Linearizing the cache will achieve the best spacial locality and data will be easily prefetchable. Therefore, the slides suggest linearizing at runtime. Regarding memory allocation policies, it is suggested to allocate from pools and not heap to not have block overhead, keeping data together with no fragmentation. Also Free as soon as possible and try to reuse immediately. 
+\newline
+The last part discussed the "curse" of aliasing. Aliasing is multiple references to the same storage location. It is caused by pointers and global variable/class members. Aliasing "Hinders reordering/elimination of loads/stores"(slide 36). To deal with aliasing we need better languages that have less aliasing, better compilers that does type-based alias analysis, better programmers and a leap of faith(-fno-aliasing). Restricting a pointer can help perform parallel operations not possible otherwise. 
+On the programmers end, to avoid aliasing:
+Minimize the use of globals, pointers, references. Use local variable when ever you can. Avoid using the address of a variable. Restrict pointers and references. Variables should be declared close to where they are used. Side-effect functions should be \textbf{const}.     
+
+\subsection{What Every Programmer Should Know About Memory}
+
+\end{document}

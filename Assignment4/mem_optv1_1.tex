@@ -1,0 +1,122 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\title{ECE472-Assignment 3}
+
+\author{Mohannad Al Arifi}
+
+\date{\today}
+
+\linespread{1.3} % 1.5 spacing
+\renewcommand{\baselinestretch}{1}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+   \item Brief architecture overview
+   \item Optimizing for (code and) data cache
+   \begin{enumerate}
+      \item General suggestions
+      \item Data structures
+   \end{enumerate}
+   \item Aliasing
+\end{itemize}
+
+\subsection{cache review}
+\begin{itemize}
+   \item ~32/64 bytes cache lines 
+   \item N-way set-associative: logical cache line $\rightarrow$ N physical lines. Helps minimize cache line thrashing.
+   \item Foes:
+   \begin{enumerate}
+      \item Compulsory misses: Data read for first time.
+      \item Capacity misses: small cache space for all active data. Too much data accessed inbetween successive use.
+      \item Conflict misses: cache thrashing because data mapping to same cache lines.
+   \end{enumerate}
+   \item Friends:
+   \begin{enumerate}
+      \item Rearrange (code, data): to increase spatial locality.
+      \item Reduce (size,\# cache lines read): smarter smaller formats, compression.
+      \item Reuse (cache lines): increase temporal and spatial locality.
+   \end{enumerate}
+   \item pay attention to:
+   \begin{enumerate}
+      \item Profile
+      \item study the generated code
+      \item locality
+      \item size
+   \end{enumerate}
+
+\end{itemize}
+
+\subsection{data cache optimization}
+\begin{itemize}
+   \item prefetching/preloading data
+   \begin{enumerate}
+      \item Software prefetching
+      \begin{enumerate}
+	 \item Not-too-Early
+	 \item Not-too-Late
+	 \item Greedy
+      \end{enumerate}
+      \item Hardware prefetching
+      \begin{enumerate}
+	 \item Hit-under-miss
+      \end{enumerate}
+   \end{enumerate}
+   \item Cache-conscious structure layout
+   \begin{enumerate}
+	\item Field reordering: e.g. Likely accessed together so store them together.
+	\item Hot/cold splitting
+	\item Compiler padding: watchout and store in decreasing order. *Good one.
+   \end{enumerate}
+   \item Cache performance analysis: 
+   \begin{enumerate}
+	\item Usage patterns:
+	    \begin{enumerate}
+		\item Activity: hot/cold field
+		\item Correlation: for field reordering
+	    \end{enumerate}
+	\item Logging tool
+   \end{enumerate}
+   \item Tree data structures
+   \begin{enumerate}
+	\item Rearrange nodes: increase spatial locality
+	\item Reduce size: pointer elimination, compression.
+	\item Breadth-first order: requires storage for complete tree of height H
+	\item Depth-first order: stores existing nodes.
+   \end{enumerate}
+   \item Linearization caching
+   \begin{enumerate}
+      \item linear data: best spatial locality, easily prefetchable.	
+      \item So linearize at runtime.
+   \end{enumerate}
+   \item Memory allocation
+   \begin{enumerate}
+      \item Allocate from pools not heap. *interesting.
+      \item Free ASAP, reuse immediately.
+   \end{enumerate}
+   \item Aliasing/anti-aliasing
+   \begin{enumerate}
+      \item Aliasing is multiple references to the same storage location.
+      \item Free ASAP, reuse immediately.
+      \end{enumerate}
+      \item restrict-qualified pointer
+      \begin{enumerate}
+	 \item Restricting can help perform parallel operations not possible otherwise.
+      \end{enumerate}
+
+\end{itemize}
+
+\end{document}
